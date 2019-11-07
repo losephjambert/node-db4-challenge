@@ -49,11 +49,27 @@ exports.up = function (knex) {
 
     })
 
-  // recipe_instructions table
-  // .createTable(RECIPE_INSTRUCTIONS, table => {
-  //   table.increments()
-  //   table.integer('recipe_id')
-  // })
+    // recipe_instructions table
+    .createTable(RECIPE_INSTRUCTIONS, table => {
+      table.increments()
+
+      // foreign key to recipe id
+      table.integer('recipe_id')
+        .unsigned()
+        .references('id')
+        .inTable(RECIPES)
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+
+      // foreign key to recipe id
+      table.integer('instruction_id')
+        .unsigned()
+        .references('id')
+        .inTable(INSTRUCTIONS)
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+    })
+
 };
 
 exports.down = function (knex) {
