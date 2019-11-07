@@ -34,7 +34,7 @@ exports.up = function (knex) {
       table.integer('recipe_id')
         .unsigned()
         .references('id')
-        .inTable('recipes')
+        .inTable(RECIPES)
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
 
@@ -42,10 +42,9 @@ exports.up = function (knex) {
       table.integer('ingredient_id')
         .unsigned()
         .references('id')
-        .inTable('ingredients')
+        .inTable(INGREDIENTS)
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
-
 
     })
 
@@ -68,10 +67,16 @@ exports.up = function (knex) {
         .inTable(INSTRUCTIONS)
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
+
     })
 
 };
 
 exports.down = function (knex) {
-  knex.schema.dropTableIfExists('users')
+  return knex.schema
+    .dropTableIfExists(RECIPES)
+    .dropTableIfExists(INGREDIENTS)
+    .dropTableIfExists(INSTRUCTIONS)
+    .dropTableIfExists(RECIPE_INGREDIENTS)
+    .dropTableIfExists(RECIPE_INSTRUCTIONS)
 };
