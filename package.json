@@ -1,0 +1,38 @@
+{
+  "name": "recipe-api",
+  "version": "0.0.1",
+  "description": "recipe manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/losephjambert/node-db4-challenge.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "express",
+    "knex",
+    "helmet",
+    "SQL"
+  ],
+  "author": "Joseph Lambert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/losephjambert/node-db4-challenge/issues"
+  },
+  "homepage": "https://github.com/losephjambert/node-db4-challenge#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "knex": "^0.20.1",
+    "knex-cleaner": "^1.3.0",
+    "sqlite3": "^4.1.0"
+  }
+}
