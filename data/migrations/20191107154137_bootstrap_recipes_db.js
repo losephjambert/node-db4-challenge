@@ -1,31 +1,37 @@
+const RECIPES = 'recipes'
+const INGREDIENTS = 'ingredients'
+const INSTRUCTIONS = 'instructions'
+const RECIPE_INGREDIENTS = 'recipe_ingredients'
+const RECIPE_INSTRUCTIONS = 'recipe_instructions'
+
 exports.up = function (knex) {
   return knex.schema
     // recipes table
-    .createTable('recipes', recipes => {
-      recipes.increments();
-      recipes.string('recipe_name', 255).notNullable()
+    .createTable(RECIPES, table => {
+      table.increments();
+      table.string('recipe_name', 255).notNullable()
     })
 
     // ingredients table
-    .createTable('ingredients', ingredients => {
-      ingredients.increments()
-      ingredients.string('ingredient_name', 255).notNullable()
+    .createTable(INGREDIENTS, table => {
+      table.increments()
+      table.string('ingredient_name', 255).notNullable()
     })
 
     // instructions table
-    .createTable('instructions', instructions => {
-      instructions.increments()
-      instructions.integer('sequence_number').notNullable()
-      instructions.text('instruction_text', 500).notNullable()
+    .createTable(INSTRUCTIONS, table => {
+      table.increments()
+      table.integer('sequence_number').notNullable()
+      table.text('instruction_text', 500).notNullable()
     })
 
     // recipe_ingredients table
-    .createTable('recipe_ingredients', recipe_ingredients => {
-      recipe_ingredients.increments()
-      recipe_ingredients.float('quantity').notNullable()
+    .createTable(RECIPE_INGREDIENTS, table => {
+      table.increments()
+      table.float('quantity').notNullable()
 
       // foreign key to recipe id
-      recipe_ingredients.integer('recipe_id')
+      table.integer('recipe_id')
         .unsigned()
         .references('id')
         .inTable('recipes')
@@ -33,7 +39,7 @@ exports.up = function (knex) {
         .onUpdate('CASCADE')
 
       // foregin key to ingredient id
-      recipe_ingredients.integer('ingredient_id')
+      table.integer('ingredient_id')
         .unsigned()
         .references('id')
         .inTable('ingredients')
@@ -44,12 +50,12 @@ exports.up = function (knex) {
     })
 
   // recipe_instructions table
-  // .createTable('recipe_instructions', recipe_instructions => {
-  //   recipe_instructions.increments()
-  //   recipe_instructions.integer('recipe')
+  // .createTable(RECIPE_INSTRUCTIONS, table => {
+  //   table.increments()
+  //   table.integer('recipe_id')
   // })
 };
 
 exports.down = function (knex) {
-
+  knex.schema.dropTableIfExists('users')
 };
