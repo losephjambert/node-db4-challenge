@@ -22,13 +22,32 @@ exports.up = function (knex) {
     // recipe_ingredients table
     .createTable('recipe_ingredients', recipe_ingredients => {
       recipe_ingredients.increments()
+      recipe_ingredients.float('quantity').notNullable()
+
+      // foreign key to recipe id
       recipe_ingredients.integer('recipe_id')
         .unsigned()
         .references('id')
         .inTable('recipes')
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
+
+      // foregin key to ingredient id
+      recipe_ingredients.integer('ingredient_id')
+        .unsigned()
+        .references('id')
+        .inTable('ingredients')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+
+
     })
+
+  // recipe_instructions table
+  // .createTable('recipe_instructions', recipe_instructions => {
+  //   recipe_instructions.increments()
+  //   recipe_instructions.integer('recipe')
+  // })
 };
 
 exports.down = function (knex) {
