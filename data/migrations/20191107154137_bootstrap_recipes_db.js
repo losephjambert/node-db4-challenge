@@ -18,6 +18,17 @@ exports.up = function (knex) {
       instructions.integer('sequence_number').notNullable()
       instructions.text('instruction_text', 500).notNullable()
     })
+
+    // recipe_ingredients table
+    .createTable('recipe_ingredients', recipe_ingredients => {
+      recipe_ingredients.increments()
+      recipe_ingredients.integer('recipe_id')
+        .unsigned()
+        .references('id')
+        .inTable('recipes')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+    })
 };
 
 exports.down = function (knex) {
