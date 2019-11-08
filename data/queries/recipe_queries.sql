@@ -1,1 +1,1 @@
-select * from recipes;
+select * from instructions;

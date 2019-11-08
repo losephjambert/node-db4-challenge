@@ -3,6 +3,7 @@ exports.seed = function (knex) {
   return knex('recipes').insert([
     { recipe_name: 'Garlic Chicken Soup' },
     { recipe_name: 'Tomato Soup' },
-    { recipe_name: 'Butter Chicken' }
+    { recipe_name: 'Butter Chicken' },
+    { recipe_name: 'Peanut Butter & Jelly Sandwich' },
   ]);
 };
